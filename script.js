@@ -8,7 +8,7 @@ let myProgressBar = document.getElementById('myProgressBar');
 let gif = document.getElementById('gif');
 let masterSongName = document.getElementById('masterSongName');
 let songItems = Array.from(document.getElementsByClassName('songItem'));
-
+//array of objects
 let songs = [
     { songName: "Ruaan - Arijit Singh, Pritam", filePath: "songs/1.mp3", coverPath: "covers/1.jpg" },
     { songName: "Arjan Vailly Animal", filePath: "songs/2.mp3", coverPath: "covers/2.jpg" },
@@ -45,12 +45,14 @@ masterPlay.addEventListener('click', () => {
     // Listen to Events
 audioElement.addEventListener('timeupdate', () => {
     // Update Seekbar
+    //percentage
     progress = parseInt((audioElement.currentTime / audioElement.duration) * 100);
     myProgressBar.value = progress;
 })
-
+//change in progess bar audio also change
 myProgressBar.addEventListener('change', () => {
     audioElement.currentTime = myProgressBar.value * audioElement.duration / 100;
+    //percentage into duration
 })
 
 const makeAllPlays = () => {
@@ -59,7 +61,7 @@ const makeAllPlays = () => {
         element.classList.add('fa-play-circle');
     })
 }
-
+//small play button
 Array.from(document.getElementsByClassName('songItemPlay')).forEach((element) => {
     element.addEventListener('click', (e) => {
         makeAllPlays();
@@ -75,7 +77,7 @@ Array.from(document.getElementsByClassName('songItemPlay')).forEach((element) =>
         masterPlay.classList.add('fa-pause-circle');
     })
 })
-
+//next
 document.getElementById('next').addEventListener('click', () => {
     if (songIndex >= 9) {
         songIndex = 0
@@ -90,7 +92,7 @@ document.getElementById('next').addEventListener('click', () => {
     masterPlay.classList.add('fa-pause-circle');
 
 })
-
+//previous
 document.getElementById('previous').addEventListener('click', () => {
     if (songIndex <= 0) {
         songIndex = 0
